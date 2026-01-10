@@ -249,23 +249,30 @@
         .bio-image-container {
             position: sticky;
             top: 120px;
+            width: 100%;
+            max-width: 350px;
         }
 
         .bio-image {
             width: 100%;
             aspect-ratio: 3/4;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1rem;
-            text-align: center;
-            padding: 2rem;
             box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
             border: 1px solid rgba(168, 85, 247, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .bio-image:hover {
@@ -606,7 +613,7 @@
             <div class="bio-layout">
                 <div class="bio-image-container">
                     <div class="bio-image">
-                        <img src="https://raw.githubusercontent.com/seyemaggykeye/Biography/tree/main/image/Prof-pic.jpg" alt="Maggie Aromokeye">
+                        <img src="https://raw.githubusercontent.com/seyemaggykeye/Biography/main/image/Prof-pic.jpg?v=3" alt="Maggie Aromokeye - Professional Photo">
                     </div>
                 </div>
                 <div class="bio-text-content">
@@ -701,14 +708,14 @@
                 Interested in connecting? Feel free to reach out for professional inquiries, collaboration opportunities, or cybersecurity discussions.
             </p>
             <div class="contact-container">
-                <form id="contactForm">
+                <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="_replyto" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message</label>
@@ -745,17 +752,8 @@
             }
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            
-            alert(`Thank you ${name}! Your message has been received. I'll get back to you at ${email} soon.`);
-            
-            this.reset();
-        });
+        // Form submission - Formspree handles this automatically
+        // The form will redirect to a thank you page after submission
     </script>
 </body>
 </html>
